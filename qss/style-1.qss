@@ -1,0 +1,168 @@
+
+/*登录界面附件*/
+#widget_image{
+image:url(:/background/image/1.png);
+background-color:white;
+}
+
+
+
+/*账户和密码框*/
+#frame_id,#frame_password{
+    background-color:white;
+    border: 1px solid #33465d;
+    border-radius: 10px;
+}
+/*账户和密码框*/
+#lineEdit_id,#lineEdit_password{
+    border: none;
+}
+
+QPushButton{
+    font: 10pt "微软雅黑";
+    color: #2f3640;
+    background-color: rgb(166,164,208);
+    border-color: #ffffff;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+}
+
+/*下拉箭头样式*/
+QComboBox::down-arrow{
+    image: url(:/icon/image/iocn/down1.png);
+}
+QComboBox QAbstractItemView {
+    border-width: 0px;
+    selection-background-color: #CAE2FE;
+}
+
+/*可编辑*/
+QComboBox:editable{
+    background: white;
+    font-size: 12pt;
+}
+
+QComboBox:disabled{
+    background:#dadada;
+    border: 0px solid #414449;
+}
+
+/*控制面板壁纸*/
+#centralwidget{background-color: rgb(89,166,244);}
+
+/*按键*/
+QPushButton{
+    color: #1D9DFF;
+    background-color: #FFFFFF;
+    border-color: #1D9DFF;
+    border-radius: 18px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px;
+}
+
+QPushButton::hover{
+    color: #FFFFFF;
+    background-color: #8EC8FD;
+    border-color: #8EC8FD;
+}
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #3BA0FE, stop:1 #1D9DFF);
+}
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #D9D9D9;
+    border-color: #D9D9D9;
+}
+
+
+
+
+
+QHeaderView{
+    color: #FFFFFF;
+    border: none;
+    background: #FFFFFF;
+    min-height: 36px;
+    font-size: 16px;
+}
+QHeaderView::section:horizontal {
+    color: #FFFFFF;
+    border: none;
+    border-left: 1px solid #FFFFFF;
+    background: #3388E8;
+}
+
+/*使纵向表头与表格样式一致 */
+QHeaderView::section:vertical {
+    min-width: 30px;
+    padding-left: 5px;
+    color:black;
+    background: transparent;
+    border: 1px solid #E5E5E5;
+    border-left: 0px;
+    border-top: 0px;
+}
+
+QHeaderView::section:vertical:pressed {
+   background:#E1EEFE
+}
+
+QHeaderView::up-arrow,QHeaderView::down-arrow {
+    width: 3px;
+    height: 3px;
+    padding-right: 1px;
+    border: none;
+}
+
+QTableView {
+    border: 1px solid #E5E5E5;
+    background: #FFFFFF;
+}
+QTableView::item {
+    padding-left: 5px;
+    padding-right: 5px;
+    border: none;
+    color:black;
+    background: transparent;
+    font: Microsoft YaHei;
+    font-size: 16px;
+    text-align: center;
+}
+QTableView::item:selected {
+    background: #E1EEFE;
+}
+QTableView QTableCornerButton::section {
+     background: #1B6AC7;
+     border: none;
+}
+
+/*编辑框*********************************************************************************/
+QLineEdit,QAbstractSpinBox{
+    background: #FFFFFF;
+    border-radius: 4px;
+    border: 1px solid #313438;
+    padding-left: 12px;
+}
+
+QLineEdit#lePage, #leCurPage{
+    width: 106px;
+    height: 28px;
+    background: #FFFFFF;
+    border-radius: 0px;
+    border: 1px solid #313438;
+    padding: 0px;
+}
+
+QLineEdit::disabled{
+    background:#dadada;
+    border: 1px solid #414449;
+}
+QLineEdit::read-only{
+    border: 1px solid #414449;
+    color: #b4b4b4;
+}
+

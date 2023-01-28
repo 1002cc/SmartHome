@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Camera</class>
+ <widget class="QMainWindow" name="Camera">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButtonC">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>170</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton,QPushButton::disabled{ 
+image: url(:/icon/image/iocn/c1.png);
+border:none;
+border-radius:30px;
+background-color:rgb(255, 255, 255);}
+QPushButton::hover{
+border:none;
+	border-radius:30px;
+  background-color:rgb(207, 207, 207);
+}
+QPushButton::checked,QPushButton::pressed{
+	border:none;
+	border-radius:30px;
+	image: url(:/icon/image/iocn/c.png);
+    background-color:rgb(184, 184, 184);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonL">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>370</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton,QPushButton::disabled{ 
+image: url(:/icon/image/iocn/p.png);
+border:none;
+border-radius:30px;
+background-color:rgb(255, 255, 255);}
+QPushButton::hover{
+border:none;
+	border-radius:30px;
+  background-color:rgb(207, 207, 207);
+}
+QPushButton::checked,QPushButton::pressed{
+	border:none;
+	border-radius:30px;
+	image: url(:/icon/image/iocn/p1.png);
+    background-color:rgb(184, 184, 184);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widgetView" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>641</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255,0);</string>
+    </property>
+    <widget class="QLabel" name="cameralabel">
+     <property name="geometry">
+      <rect>
+       <x>-10</x>
+       <y>-10</y>
+       <width>671</width>
+       <height>441</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>10</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>返回</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonV">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>260</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton,QPushButton::disabled{ 
+border:none;
+border-radius:30px;
+background-color:rgb(255, 255, 255);}
+QPushButton::hover{
+border:none;
+	border-radius:30px;
+  background-color:rgb(207, 207, 207);
+}
+QPushButton::checked,QPushButton::pressed{
+	border:none;
+	border-radius:30px;
+	image: url(:/icon/image/iocn/Recorde.png);
+    background-color:rgb(184, 184, 184);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="timelabel">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>60</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

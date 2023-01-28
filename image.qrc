@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>image/iocn/r.png</file>
+        <file>image/iocn/icon.png</file>
+        <file>image/iocn/icon.ico</file>
+        <file>image/iocn/f.png</file>
+        <file>image/iocn/user.png</file>
+        <file>image/iocn/password.png</file>
+        <file>image/iocn/l.png</file>
+        <file>image/iocn/down1.png</file>
+        <file>image/iocn/down.png</file>
+        <file>image/iocn/z.png</file>
+        <file>image/iocn/y.png</file>
+        <file>image/iocn/a.png</file>
+        <file>image/iocn/c.png</file>
+        <file>image/iocn/c1.png</file>
+        <file>image/iocn/p.png</file>
+        <file>image/iocn/p1.png</file>
+        <file>image/iocn/x.png</file>
+        <file>image/iocn/send.png</file>
+        <file>image/iocn/sou.png</file>
+        <file>image/iocn/quit.png</file>
+        <file>image/iocn/minimize.png</file>
+        <file>image/iocn/close.png</file>
+        <file>image/iocn/Records.png</file>
+        <file>image/iocn/Recording.png</file>
+        <file>image/iocn/Recorde.png</file>
+    </qresource>
+    <qresource prefix="/qss">
+        <file>qss/style-1.qss</file>
+    </qresource>
+    <qresource prefix="/background">
+        <file>image/3.png</file>
+        <file>image/2.png</file>
+        <file>image/1.png</file>
+        <file>image/3.gif</file>
+    </qresource>
+</RCC>
