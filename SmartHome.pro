@@ -4,7 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11 console
 
 # set icon
-RC_FILE += order.rc
+#RC_FILE += order.rc
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -66,5 +66,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     image.qrc
 
-unix: CONFIG += link_pkgconfig
-unix: PKGCONFIG += $$PWD/install/lib/pkgconfig/opencv.pc
+INCLUDEPATH += $$PWD/install/include \
+                $$PWD/install/include/opencv \
+                $$PWD/install/include/opencv2
+
+LIBS += $$PWD/install/lib/libopencv*.a

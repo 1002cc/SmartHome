@@ -22,7 +22,7 @@ Face::Face(QWidget *parent) :
     ui->facelabel->setScaledContents(true);
     ui->facelabel->show();
 #endif
-    if(cap.open(-1))
+    if(cap.open(0))
     {
         connect(this,SIGNAL(sendData_face(bool)),this->parentWidget(),SLOT(reviecefacedata(bool)));
         //使用opencv打开摄像头
@@ -44,9 +44,9 @@ Face::Face(QWidget *parent) :
         model->read(myfacexml);
         //eyemodel= cv::face::FisherFaceRecognizer::create();
         //eyemodel->read("../SmartHome/MyeyePCAModel.xml");
-        ft2 = cv::freetype::createFreeType2();
-        //下面的字库要自己下载并拷贝到需要的位置
-        ft2->loadFontData( "../SmartHome/install/fangping.ttf", 0 );
+//        ft2 = cv::freetype::createFreeType2();
+//        //下面的字库要自己下载并拷贝到需要的位置
+//        ft2->loadFontData( "../SmartHome/install/fangping.ttf", 0 );
     }else{
         QMessageBox::information(this,"摄像机","摄像机打开失败");
         faceins=false;
@@ -107,9 +107,9 @@ Face::Face(const QString &name, const int &num, QWidget *parent):
             qDebug()<< "can't load eyeCascade\n";
         }
         outFile.open(facepath,std::ios::out|std::ios::binary|std::ios::app);
-        ft2 = cv::freetype::createFreeType2();
-        //下面的字库要自己下载并拷贝到需要的位置
-        ft2->loadFontData( "../SmartHome/install/fangping.ttf", 0 );
+//        ft2 = cv::freetype::createFreeType2();
+//        //下面的字库要自己下载并拷贝到需要的位置
+//        ft2->loadFontData( "../SmartHome/install/fangping.ttf", 0 );
     }else{
         QMessageBox::information(this,"摄像机","摄像机打开失败");
         faceins=false;
@@ -146,9 +146,9 @@ Face::Face(const int &num, QWidget *parent):
             strvec.push_back(query.value(1).toString());
             qDebug()<< query.value(1).toString();
         }while(query.next());
-        ft2 = cv::freetype::createFreeType2();
-        //下面的字库要自己下载并拷贝到需要的位置
-        ft2->loadFontData( "../SmartHome/install/fangping.ttf", 0 );
+//        ft2 = cv::freetype::createFreeType2();
+//        //下面的字库要自己下载并拷贝到需要的位置
+//        ft2->loadFontData( "../SmartHome/install/fangping.ttf", 0 );
         model = cv::face::FisherFaceRecognizer::create();
         model->read(myfacexml);
         timer->start(33);
@@ -254,9 +254,9 @@ void Face::readFarme()
             }else{
                 text="正在检测";
             }
-            ft2->putText(src_image, text, cv::Point(faces[0].x,faces[0].y-10), 30,
-                         cv::Scalar(255,255,255), 2, 8, true );
-            //putText(src_image, "Detecting", cv::Point(faces[0].x,faces[0].y-10),cv::FONT_HERSHEY_PLAIN,2.0,cv::Scalar(255,255,255),2);
+//            ft2->putText(src_image, text, cv::Point(faces[0].x,faces[0].y-10), 30,
+//                         cv::Scalar(255,255,255), 2, 8, true );
+//            //putText(src_image, "Detecting", cv::Point(faces[0].x,faces[0].y-10),cv::FONT_HERSHEY_PLAIN,2.0,cv::Scalar(255,255,255),2);
             cv::rectangle(src_image,faces[i].tl(),faces[i].br(),cv::Scalar(255,255,255),2);
         }
         for(int i=0;i<(int)eyes.size();i++){
@@ -377,8 +377,8 @@ void Face::tryModel()
             }
             //cv::Size textSize = ft2->getTextSize(text,fontHeight,thickness,&baseline);
             //putText(src_image,text, cv::Point(faces[0].x,faces[0].y-10),cv::FONT_HERSHEY_PLAIN,2.0,cv::Scalar(255,255,255),2);
-            ft2->putText(src_image, text, cv::Point(faces[0].x,faces[0].y-10), 30,
-                         cv::Scalar(255,255,255), 2, 8, true );
+//            ft2->putText(src_image, text, cv::Point(faces[0].x,faces[0].y-10), 30,
+//                         cv::Scalar(255,255,255), 2, 8, true );
             cv::rectangle(src_image,faces[i].tl(),faces[i].br(),cv::Scalar(255,255,255),2);
         }
         for(int i=0;i<(int)eyes.size();i++){

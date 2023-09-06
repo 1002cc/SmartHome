@@ -12,7 +12,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/face.hpp>
-#include <opencv2/freetype.hpp>
+//#include <opencv2/freetype.hpp>
 namespace Ui {
 class Face;
 }
@@ -76,7 +76,7 @@ private:
     int count = 0;
     std::ofstream outFile;
     QVector<QString> strvec;
-     cv::Ptr<cv::freetype::FreeType2> ft2;
+    //cv::Ptr<cv::freetype::FreeType2> ft2;
 };
 
 #endif // FACE_H

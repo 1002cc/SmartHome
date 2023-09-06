@@ -21,20 +21,21 @@ land::land(QWidget *parent)
 
 void land::LoginInit()
  {
-    //暗注释
-     ui->userComboBox->lineEdit()->setPlaceholderText("请输入用户名");
-     ui->userComboBox->lineEdit()->setMaxLength(8);
-     ui->passwordLineEdit->setPlaceholderText(QStringLiteral("请输入密码"));
-     ui->passwordLineEdit->setMaxLength(8);
 
-     m_userNameList.clear();
-     m_passwdList.clear();
-     m_isremberList.clear();
+    ui->userComboBox->lineEdit()->setPlaceholderText("请输入用户名");
+    ui->userComboBox->lineEdit()->setMaxLength(8);
+    ui->passwordLineEdit->setPlaceholderText(QStringLiteral("请输入密码"));
+    ui->passwordLineEdit->setMaxLength(8);
 
-     movie = new QMovie(":/background/image/3.gif");
-     ui->label_background->setMovie(movie);
-     movie->setScaledSize(QSize(800,480));
-     movie->start();
+    m_userNameList.clear();
+    m_passwdList.clear();
+    m_isremberList.clear();
+
+    ui->label_background->lower();
+    movie = new QMovie(":/background/image/3.gif");
+    ui->label_background->setMovie(movie);
+    movie->setScaledSize(QSize(800,480));
+    movie->start();
 }
 
 
