@@ -66,7 +66,7 @@ void Music::musicinit()
     ui->volumelabel->setNum(50);
     ui->musicSlider->setMinimum(0);
     //获取指定目录下的所有.MP3文件名
-    dir.setPath("../SmartHome/music/");
+    dir.setPath("../music/");
     QStringList ImageList;
 
     ImageList << "*.mp3";
@@ -78,7 +78,7 @@ void Music::musicinit()
     for (int i=0;i < musicCount;i++)
     {
         ui->musiclistWidget->addItem(dir[i]);
-        playerlist.append("../SmartHome/music/"+dir[i]);
+        playerlist.append("../music/"+dir[i]);
     }
 }
 

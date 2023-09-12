@@ -17,20 +17,15 @@ class Photo;
 class Photo : public QMainWindow
 {
     Q_OBJECT
-
 public:
     explicit Photo(QWidget *parent = nullptr);
     ~Photo();
     void showimage(const int &index);
 private slots:
     void on_listViewImage_clicked(const QModelIndex &index);
-
     void on_pushButtonnext_clicked();
-
     void on_pushButtonprev_clicked();
-
     void on_returnButton_clicked();
-
 private:
     Ui::Photo *ui;
     QDir dir;
@@ -41,8 +36,8 @@ private:
     int ImageCount;
     int w,h;
     QPixmap t;
-   QMediaPlayer* player;
-   QVideoWidget* videoWidget;
+    QMediaPlayer* player;
+    QVideoWidget* videoWidget;
 };
 
 #endif // PHOTO_H

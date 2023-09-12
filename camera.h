@@ -28,26 +28,18 @@ class Camera;
 class Camera : public QMainWindow
 {
     Q_OBJECT
-
 public:
     explicit Camera(QWidget *parent = nullptr);
     ~Camera();
     bool getcamerastate();
-
     void deletecamera();
 private slots:
     void on_pushButtonC_clicked();
-
     void on_pushButtonL_clicked();
-
     void on_pushButton_clicked();
-
     void readFarme();
-
     void on_pushButtonV_clicked();
-
     void update();
-
 private:
     Ui::Camera *ui;
 #if QT_CAMERA

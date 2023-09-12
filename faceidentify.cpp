@@ -1,8 +1,6 @@
 #include "faceidentify.h"
 #include <fstream>
-
-#define OPENCV_EYE 0
-
+#include <QDebug>
 //构造函数处理，清空容器
 faceidentify::faceidentify()
 {
@@ -19,30 +17,25 @@ faceidentify::faceidentify()
 void faceidentify::saveimage(const std::string& facepath,const std::string& outpath,const int&facenumber,const int & imagecount)
 {
     //打开摄像头，电脑自带的摄像头选择-1或0，外接摄像头选择2；
-    cv::VideoCapture capture(0);
-    if(!capture.isOpened()){
-        std::cout << "camera open failed" << std::endl;
+    cv::VideoCapture capture(CAMERA_FLAG);
+    if (!capture.isOpened()) {
+        qDebug("camera open failed");
         return;
-    }else{
-        std::cout << "camera open success!" << std::endl;
     }
 
     // 加载检测人脸的xml文件
-    if(!faceCascade.load(facexml))
-    {
-        std::cout << "facexml load error!" << std::endl;
+    if (!faceCascade.load(facexml)) {
+        qDebug("facexml load error!");
         return;
-    }else{
-        std::cout << "facexml load success!" << std::endl;
     }
+
 #if OPENCV_EYE
     //加载检查眼睛的xml文件
-    if(!eyeCascade.load(eyexml))\{
-        cout << "eyexml load error!" << endl;
+    if (!eyeCascade.load(eyexml)) {
+        qDebug("eyexml load error!");
         return;
-    }else{
-        cout << "eyexml load success!" << endl;
     }
+
     std::ofstream outeyeFile;
     //打开文件
     outeyeFile.open(eyepath,std::ios::out|std::ios::binary|std::ios::app);
@@ -112,6 +105,7 @@ void faceidentify::saveimage(const std::string& facepath,const std::string& outp
         }
     }
     outFile.close();
+
 #if OPENCV_EYE
     outeyeFile.close();
 #endif
@@ -274,7 +268,6 @@ int faceidentify::opencvtrain(const std::string& filename,const std::string& out
 
 #if 0
     model = face::EigenFaceRecognizer::create();
-    cout << "XZCZXCZX" << endl;
     model->save("../opencv/MyFacePCAModel.xml");
     model->train(images, labels);
 
@@ -326,7 +319,7 @@ void faceidentify::identify()
     int label=0;
     std::string text;
     cv::Ptr<cv::face::EigenFaceRecognizer> facemodel = cv::face::EigenFaceRecognizer::create();
-    facemodel->read("../SmartHome/install/MyFacePCAModel.xml");
+    facemodel->read("../install/MyFacePCAModel.xml");
     while(cap.read(frame))
     {
         // 颠倒图像

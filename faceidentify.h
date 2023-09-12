@@ -11,17 +11,16 @@
 #include <vector>
 #include <algorithm>
 
+#define CAMERA_FLAG 0
+#define OPENCV_EYE 0
+
 class faceidentify
 {
 public:
     faceidentify();
-
     void saveimage(const std::string& facepath,const std::string& outpath,const int &facenumber=1,const int & imagecount=10);
-
     void read_csv(const std::string& filename,  std::vector<cv::Mat>& images,  std::vector<int>& labels, char separator = ';');
-
     int opencvtrain(const std::string& filename,const std::string& outxmlfile="../SmartHome/install/MyFacePCAModel.xml");
-
     void identify();
 private:
     // 级联器
@@ -37,13 +36,9 @@ private:
     cv::Mat eyeSample;
 
     //std::string eyepath="../opencv/image/myeyedata.txt";
-
     std::string facexml = "../SmartHome/install/data/haarcascades/haarcascade_frontalface_alt2.xml";
-
     std::string eyexml = "../SmartHome/install/data/haarcascades/haarcascade_eye.xml";
-
     std::string savefacexml = "../SmartHome/install/data/haarcascades/haarcascade_frontalface_alt_tree.xml";
-
 };
 
 #endif // FACEIDENTIFY_H

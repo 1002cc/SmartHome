@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QMovie>
 #include "face.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class land; }
 QT_END_NAMESPACE
@@ -23,16 +24,11 @@ private:
 public:
     land(QWidget *parent = nullptr);
     ~land();
-
 private slots:
     void on_pushButton_login_clicked();
-
     void on_checkBox_clicked();
-
     void setlogint(int);
-
     void on_pushButton_login_p_clicked();
-
     void reviecefacedata(bool flag);
 private:
     Ui::land *ui;
@@ -43,7 +39,6 @@ private:
     QString isrembered;//是否记住密码
     QString username;
     QString password;
-    Face*f;
-
+    Face *f;
 };
 #endif // LAND_H

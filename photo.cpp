@@ -37,14 +37,15 @@ Photo::~Photo()
 
 void Photo::showimage(const int &index)
 {
-    if(dir[index].contains(".jpg")||dir[index].contains(".png")||dir[index].contains(".bmp")){
+    if (dir[index].contains(".jpg")||dir[index].contains(".png")||dir[index].contains(".bmp")) {
         player->pause();
         ui->imagelabel->setPixmap(QPixmap("../SmartHome/image/"+dir[index]));
         ui->imagelabel->show();
-    }else{
-    player->setVideoOutput(videoWidget);	// 指定视频输出窗口(一个播放器)
-    player->setMedia(QUrl::fromLocalFile(QFileInfo("../SmartHome/image/"+dir[index]).absoluteFilePath()));
-    player->play();}
+    } else {
+        player->setVideoOutput(videoWidget);	// 指定视频输出窗口(一个播放器)
+        player->setMedia(QUrl::fromLocalFile(QFileInfo("../SmartHome/image/"+dir[index]).absoluteFilePath()));
+        player->play();
+    }
 }
 
 
@@ -56,15 +57,15 @@ void Photo::on_listViewImage_clicked(const QModelIndex &index)
 
 void Photo::on_pushButtonnext_clicked()
 {
-    flag-=1;
-    if(flag<0)
+    flag -= 1;
+    if (flag<0)
         flag=ImageCount-1;
     showimage(flag);
 }
 
 void Photo::on_pushButtonprev_clicked()
 {
-    flag+=1;
+    flag += 1;
     if(flag>=ImageCount)
         flag=0;
      showimage(flag);

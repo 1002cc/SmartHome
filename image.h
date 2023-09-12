@@ -6,14 +6,11 @@
 #include <QBuffer>
 #include <QTextCodec>
 
-
 class Image
 {
 public:
     Image();
-
     static QByteArray imageToBase64(QString fileName);
-
 };
 
 #endif // IMAGE_H

@@ -12,17 +12,13 @@ class EquipmentControl;
 class EquipmentControl : public QMainWindow
 {
     Q_OBJECT
-
 public:
     explicit EquipmentControl(QWidget *parent = nullptr);
     ~EquipmentControl();
 private slots:
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
-
     void on_addButton_clicked();
-
 private:
     Ui::EquipmentControl *ui;
     controlwidget*c;

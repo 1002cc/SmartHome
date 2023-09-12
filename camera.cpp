@@ -35,7 +35,7 @@ Camera::Camera(QWidget *parent) :
      //3.开启摄像头
      camera->start();
 #else
-    if(cap.open(-1)){
+    if(cap.open(0)){
         Recordtime.setHMS(0,0,0,0);
         Recordtimer=new QTimer();
          ui->timelabel->hide();
@@ -83,7 +83,7 @@ void Camera::on_pushButtonC_clicked()
     //建立void imageCaptured(int id, const QImage &preview)的槽连接
     //使用匿名函数，拼接照片名
     connect(imageCapture,&QCameraImageCapture::imageCaptured,this,[=](int id, const QImage &preview){
-        QString str="../SmartHome/image/"+QString::number(id)+".jpg";
+        QString str="../image/"+QString::number(id)+".jpg";
         preview.save(str);
     });
 
@@ -105,7 +105,7 @@ void Camera::on_pushButtonC_clicked()
     cvtColor(src_image, src2, CV_BGR2RGB);
     QImage Qtemp1= QImage((const unsigned char*)(src2.data), src2.cols, src2.rows, src2.step, QImage::Format_RGB888);
     QDateTime datatime = QDateTime::currentDateTime();
-    QString imagename = "../SmartHome/image/opencv"+datatime.toString("yyyyMMddhhmmss")+".jpg";
+    QString imagename = "../image/opencv"+datatime.toString("yyyyMMddhhmmss")+".jpg";
     qDebug()<<imagename;
     Qtemp1.save(imagename);
 #endif
@@ -161,7 +161,7 @@ void Camera::on_pushButtonV_clicked()
         ui->pushButtonV->setIcon(QIcon(":/icon/image/iocn/Recording.png"));
         ui->pushButtonV->setIconSize(QSize(32,32));
         QDateTime datatime = QDateTime::currentDateTime();
-        QString videoname="../SmartHome/image/"+datatime.toString("yyyyMMddhhmmss")+".avi";
+        QString videoname="../image/"+datatime.toString("yyyyMMddhhmmss")+".avi";
         cv::Size S = cv::Size((int)cap.get(CV_CAP_PROP_FRAME_WIDTH),
                                  (int)cap.get(CV_CAP_PROP_FRAME_HEIGHT));
         vwriter.open(videoname.toStdString(), //视频文件名

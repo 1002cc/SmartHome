@@ -3,19 +3,19 @@
 
 #include <QWidget>
 
-namespace Ui {
-class controlwidget;
+namespace Ui
+{
+    class controlwidget;
 }
 
 class controlwidget : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit controlwidget(QWidget *parent = nullptr);
     ~controlwidget();
-    void setname(const QString& name);
-    void setid(const QString& id);
+    void setname(const QString &name);
+    void setid(const QString &id);
 private slots:
     void on_bottomc(bool isc);
 

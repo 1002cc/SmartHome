@@ -8,21 +8,14 @@
 #include "faceidentify.h"
 #include "sql.h"
 
+#define FACE_IDENTIFY_TIMEOUT 30
+
 Face::Face(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Face)
 {
     ui->setupUi(this);
-#if 0 //使用opencv打开图片并显示到qt的label组件上  对图像的RBG顺序调整
-    Mat src1=imread("/home/chen/SmartHome/SmartHome/image/1.jpg");
-    Mat src2;
-    cvtColor(src1, src2, CV_BGR2RGB);
-    QImage Qtemp1= QImage((const unsigned char*)(src2.data), src2.cols, src2.rows, src2.step, QImage::Format_RGB888);
-    ui->facelabel->setPixmap(QPixmap::fromImage(Qtemp1));
-    ui->facelabel->setScaledContents(true);
-    ui->facelabel->show();
-#endif
-    if(cap.open(0))
+    if(cap.open(CAMERA_FLAG))
     {
         connect(this,SIGNAL(sendData_face(bool)),this->parentWidget(),SLOT(reviecefacedata(bool)));
         //使用opencv打开摄像头
@@ -46,7 +39,7 @@ Face::Face(QWidget *parent) :
         //eyemodel->read("../SmartHome/MyeyePCAModel.xml");
 //        ft2 = cv::freetype::createFreeType2();
 //        //下面的字库要自己下载并拷贝到需要的位置
-//        ft2->loadFontData( "../SmartHome/install/fangping.ttf", 0 );
+//        ft2->loadFontData( "../install/fangping.ttf", 0 );
     }else{
         QMessageBox::information(this,"摄像机","摄像机打开失败");
         faceins=false;
@@ -83,39 +76,40 @@ Face::Face(const QString &name, const int &num, QWidget *parent):
     ui(new Ui::Face)
 {
     ui->setupUi(this);
-    if(cap.open(-1))
-    {
-        connect(this,SIGNAL(sendData_flag(bool)),this->parentWidget(),SLOT(reviecefacedata(bool)));
-        this->num=num;
-        this->name=name;
-        imagepath="../SmartHome/image/faceimage/"+name;
-        if(!QDir(imagepath).exists()){
-            QDir().mkdir(imagepath);
-        }
-        timer = new QTimer(this);
-        image = new QImage();
-        connect(timer,SIGNAL(timeout()),this,SLOT(trainModel()));
-        timer->start(33);
-        faceins=true;
-        qDebug()<< "打开成功";
-        faceCascade.load(facexml);
-        eyeCascade.load(eyexml);
-        if (faceCascade.empty()){
-            qDebug()<< "can't load classifier\n";
-        }
-        if (eyeCascade.empty()){
-            qDebug()<< "can't load eyeCascade\n";
-        }
-        outFile.open(facepath,std::ios::out|std::ios::binary|std::ios::app);
+    if (!cap.open(CAMERA_FLAG)) {
+        QMessageBox::information(this,"摄像机","摄像机打开失败");
+        faceins=false;
+        qDebug("打开失败");
+        this->close();
+        return ;
+    }
+    qDebug("打开成功");
+    this->num = num;
+    this->name = name;
+    imagepath="../image/faceimage/"+name;
+    if(!QDir(imagepath).exists()){
+        QDir().mkdir(imagepath);
+    }
+    image = new QImage();
+    timer = new QTimer(this);
+    timer->start(FACE_IDENTIFY_TIMEOUT);
+    connect(timer,SIGNAL(timeout()),this,SLOT(trainModel()));
+    connect(this,SIGNAL(sendData_flag(bool)),this->parentWidget(),SLOT(reviecefacedata(bool)));
+
+    faceins=true;
+
+    faceCascade.load(facexml);
+    if (faceCascade.empty()) {
+        qDebug("can't load classifier");
+    }
+    eyeCascade.load(eyexml);
+    if (eyeCascade.empty()) {
+        qDebug("can't load eyeCascade");
+    }
+    outFile.open(facepath,std::ios::out|std::ios::binary|std::ios::app);
 //        ft2 = cv::freetype::createFreeType2();
 //        //下面的字库要自己下载并拷贝到需要的位置
 //        ft2->loadFontData( "../SmartHome/install/fangping.ttf", 0 );
-    }else{
-        QMessageBox::information(this,"摄像机","摄像机打开失败");
-        faceins=false;
-        this->close();
-        qDebug()<< "打开失败";
-    }
 }
 
 Face::Face(const int &num, QWidget *parent):
@@ -123,7 +117,7 @@ Face::Face(const int &num, QWidget *parent):
     ui(new Ui::Face)
 {
     ui->setupUi(this);
-    if(cap.open(-1)&&num==1)
+    if(cap.open(CAMERA_FLAG)&&num==1)
     {
         timer = new QTimer(this);
         image = new QImage();
@@ -151,7 +145,7 @@ Face::Face(const int &num, QWidget *parent):
 //        ft2->loadFontData( "../SmartHome/install/fangping.ttf", 0 );
         model = cv::face::FisherFaceRecognizer::create();
         model->read(myfacexml);
-        timer->start(33);
+        timer->start(FACE_IDENTIFY_TIMEOUT);
     }else{
         QMessageBox::information(this,"摄像机","摄像机打开失败");
         faceins=false;
@@ -173,10 +167,12 @@ bool Face::facenew()
 
 void Face::deleteface()
 {
-    if(cap.isOpened()){
-        if(timer->timerType())
-                timer->stop();
-    cap.release();}
+    if (cap.isOpened()) {
+        if (timer->timerType()) {
+            timer->stop();
+        }
+        cap.release();
+    }
 }
 
 void Face::on_pushButton_2_clicked()
@@ -190,10 +186,9 @@ void Face::readFarme()
 {
     cap.read(src_image);
     flip(src_image, src_image, 1);
-    if (src_image.channels() == 3){
+    if (src_image.channels() == 3) {
         cvtColor(src_image, imgGray, CV_RGB2GRAY);
-    }
-    else{
+    } else {
         imgGray = src_image;
     }
     faceCascade.detectMultiScale(imgGray, faces, 1.2, 6, 0, cv::Size(0, 0));
@@ -204,8 +199,8 @@ void Face::readFarme()
     //cv::Mat dsteye,eyeSample;
     QString str;
     std::string text;
-    if (faces.size() > 0){
-        for(int i=0;i<(int)faces.size();i++){
+    if (faces.size() > 0) {
+        for(int i=0;i<(int)faces.size();i++) {
             cv::Mat src=src_image(faces[i]);
             // 保存识别的结果
             // 设置灰度图像，防止颜色不一致
